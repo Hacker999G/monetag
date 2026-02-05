@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ad Reward System - Cyber Edition</title>
+  
+  <script src='//libtl.com/sdk.js' data-zone='10320222' data-sdk='show_10320222'></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@500;700&display=swap');
+
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #050a10;
+      font-family: 'Inter', sans-serif;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    /* Background Glow */
+    body::before {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: rgba(0, 242, 255, 0.15);
+      filter: blur(100px);
+      border-radius: 50%;
+      top: 10%;
+      left: 10%;
+    }
+
+    .app-container {
+      background: rgba(15, 23, 42, 0.8);
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      padding: 35px;
+      width: 340px;
+      backdrop-filter: blur(20px);
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    h2 {
+      margin: 0 0 5px 0;
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #00f2ff, #0066ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .developer-label {
+      font-size: 13px;
+      color: #64748b;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 20px;
+      transition: 0.3s;
+    }
+
+    .developer-label:hover { color: #00f2ff; }
+
+    .stats-card {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 18px;
+      padding: 15px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-around;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .stat-item span {
+      display: block;
+      font-size: 12px;
+      color: #94a3b8;
+      text-transform: uppercase;
+    }
+
+    .stat-item b {
+      font-size: 18px;
+      color: #f8fafc;
+    }
+
+    /* Modern Progress Ring */
+    .progress-circle {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 30px;
+    }
+
+    .progress-circle svg { transform: rotate(-90deg); width: 140px; height: 140px; }
+
+    .progress-circle circle {
+      fill: none;
+      stroke-width: 10;
+      stroke-linecap: round;
+    }
+
+    .progress-bg { stroke: rgba(255, 255, 255, 0.05); }
+
+    .progress-fill {
+      stroke: #00f2ff;
+      stroke-dasharray: 440;
+      stroke-dashoffset: 440;
+      transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: drop-shadow(0 0 5px #00f2ff);
+    }
+
+    .progress-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Action Buttons */
+    .button-group { display: flex; flex-direction: column; gap: 12px; }
+
+    .btn {
+      padding: 14px;
+      border-radius: 14px;
+      border: none;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: #00f2ff;
+      color: #003333;
+    }
+
+    .btn-primary:hover { background: #fff; transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .btn-outline:hover { background: rgba(255, 255, 255, 0.05); }
+
+    .btn-stop { color: #ff4b4b; border-color: rgba(255, 75, 75, 0.2); }
+
+    #toast {
+      position: fixed;
+      top: 20px;
+      background: #00f2ff;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      display: none;
+      animation: slideDown 0.5s ease;
+    }
+
+    @keyframes slideDown { from { top: -50px; } to { top: 20px; } }
+  </style>
+</head>
+<body>
+
+  <div id="toast">Reward added successfully!</div>
+
+  <div class="app-container">
+    <h2>Premium Ads</h2>
+    <a href="https://t.me/DEVELOPER_GOPAL" target="_blank" class="developer-label">By GOPAL</a>
+
+    <div class="stats-card">
+      <div class="stat-item">
+        <span>Watched</span>
+        <b id="ads-count">0</b>
+      </div>
+      <div class="stat-item">
+        <span>Points</span>
+        <b id="points-count">0</b>
+      </div>
+    </div>
+
+    <div class="progress-circle">
+      <svg>
+        <circle class="progress-bg" cx="70" cy="70" r="65"></circle>
+        <circle class="progress-fill" id="p-bar" cx="70" cy="70" r="65"></circle>
+      </svg>
+      <div class="progress-text" id="p-text">0%</div>
+    </div>
+
+    <div class="button-group">
+      <button class="btn btn-primary" onclick="watchAd()"> Watch Ad</button>
+      <button class="btn btn-outline" onclick="startAutoAds()"> Auto Show</button>
+      <button class="btn btn-outline btn-stop" onclick="stopAutoAds()"> Stop</button>
+    </div>
+  </div>
+
+  <script>
+    let adsWatched = 0;
+    let points = 0;
+    let autoInterval = null;
+
+    function updateUI() {
+      document.getElementById('ads-count').innerText = adsWatched;
+      document.getElementById('points-count').innerText = points;
+      
+      let percent = (adsWatched % 10) * 10; 
+      let offset = 440 - (440 * percent) / 100;
+      document.getElementById('p-bar').style.strokeDashoffset = offset;
+      document.getElementById('p-text').innerText = percent + "%";
+    }
+
+    function watchAd() {
+      if (typeof show_10320222 === 'function') {
+        show_10320222().then(() => {
+          adsWatched++;
+          points += 10;
+          updateUI();
+          showToast();
+        }).catch(err => {
+          console.error("Ad failed", err);
+        });
+      } else {
+        alert("Ad SDK not loaded yet.");
+      }
+    }
+
+    function startAutoAds() {
+      if (autoInterval) return;
+      showToast("Auto Mode Enabled");
+      autoInterval = setInterval(() => {
+        watchAd();
+      }, 5000); //       
+    }
+
+    function stopAutoAds() {
+      clearInterval(autoInterval);
+      autoInterval = null;
+      showToast("Auto Mode Stopped");
+    }
+
+    function showToast(msg = "Point Added!") {
+      const toast = document.getElementById('toast');
+      toast.innerText = msg;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 2500);
+    }
+  </script>
+
+</body>
+</html>
