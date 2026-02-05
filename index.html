@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Premium Ad System - Dual Network</title>
-  
-  <script src='//libtl.com/sdk.js' data-zone='10320222' data-sdk='show_10320222'></script>
+  <title>Gigapub Ad Reward System</title>
   
   <script src="https://ad.gigapub.tech/script?id=1096"></script>
 
@@ -21,201 +19,214 @@
       background: #050a10;
       font-family: 'Inter', sans-serif;
       color: #ffffff;
+      overflow: hidden;
+    }
+
+    /* Background Glow Effect */
+    body::before {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      background: rgba(112, 0, 255, 0.15);
+      filter: blur(100px);
+      border-radius: 50%;
+      top: -50px;
+      right: -50px;
     }
 
     .app-container {
       background: rgba(15, 23, 42, 0.85);
-      border-radius: 30px;
-      border: 1px solid rgba(0, 242, 255, 0.2);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
       padding: 35px;
-      width: 340px;
-      backdrop-filter: blur(20px);
+      width: 320px;
+      backdrop-filter: blur(25px);
+      position: relative;
+      z-index: 10;
       text-align: center;
     }
 
     h2 {
       margin: 0;
       font-family: 'Outfit', sans-serif;
-      background: linear-gradient(135deg, #00f2ff, #7000ff);
+      font-size: 24px;
+      background: linear-gradient(135deg, #7000ff, #00f2ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-size: 26px;
+      letter-spacing: -0.5px;
     }
 
-    .dev-link {
+    .dev-label {
       font-size: 12px;
       color: #64748b;
       text-decoration: none;
-      margin-bottom: 20px;
-      display: inline-block;
-    }
-
-    .stats-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 15px;
-      margin: 20px 0;
-      display: flex;
-      justify-content: space-around;
-    }
-
-    .stat-item span { font-size: 11px; color: #94a3b8; display: block; }
-    .stat-item b { font-size: 18px; color: #00f2ff; }
-
-    .progress-circle {
-      position: relative;
-      width: 130px;
-      height: 130px;
-      margin: 0 auto 25px;
-    }
-
-    .progress-circle svg { transform: rotate(-90deg); width: 130px; height: 130px; }
-    .progress-circle circle { fill: none; stroke-width: 8; stroke-linecap: round; }
-    .progress-bg { stroke: rgba(255, 255, 255, 0.1); }
-    .progress-fill {
-      stroke: #00f2ff;
-      stroke-dasharray: 408;
-      stroke-dashoffset: 408;
-      transition: 0.5s;
-    }
-
-    .network-badge {
-      font-size: 10px;
-      padding: 4px 10px;
-      border-radius: 20px;
-      background: rgba(0, 242, 255, 0.1);
-      color: #00f2ff;
-      margin-bottom: 15px;
-      display: inline-block;
-    }
-
-    .btn-group { display: flex; flex-direction: column; gap: 10px; }
-    .btn {
-      padding: 14px;
-      border-radius: 15px;
-      border: none;
-      font-weight: 600;
-      cursor: pointer;
+      display: block;
+      margin-top: 5px;
+      margin-bottom: 25px;
       transition: 0.3s;
     }
 
-    .btn-main { background: #00f2ff; color: #000; }
-    .btn-main:hover { transform: scale(1.03); background: #fff; }
-    .btn-sec { background: transparent; border: 1px solid rgba(255,255,255,0.1); color: #fff; }
-    .btn-stop { border-color: #ff4b4b; color: #ff4b4b; }
+    .dev-label:hover { color: #00f2ff; }
+
+    .stats-card {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 20px;
+      padding: 15px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-around;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .stat-box span { font-size: 11px; color: #94a3b8; text-transform: uppercase; display: block; }
+    .stat-box b { font-size: 20px; color: #f8fafc; }
+
+    /* Progress Circle */
+    .progress-container {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 30px;
+    }
+
+    .progress-container svg { transform: rotate(-90deg); width: 140px; height: 140px; }
+    .progress-container circle { fill: none; stroke-width: 10; stroke-linecap: round; }
+    .progress-bg { stroke: rgba(255, 255, 255, 0.05); }
+    .progress-fill {
+      stroke: #7000ff;
+      stroke-dasharray: 440;
+      stroke-dashoffset: 440;
+      transition: stroke-dashoffset 0.8s ease;
+      filter: drop-shadow(0 0 8px #7000ff);
+    }
+
+    .progress-val {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 26px;
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Buttons */
+    .btn-stack { display: flex; flex-direction: column; gap: 12px; }
+    .btn {
+      padding: 15px;
+      border-radius: 16px;
+      border: none;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .btn-main { background: #7000ff; color: white; box-shadow: 0 10px 20px rgba(112, 0, 255, 0.3); }
+    .btn-main:hover { transform: scale(1.05); background: #8224ff; }
+
+    .btn-sec { background: transparent; border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; }
+    .btn-sec:hover { background: rgba(255, 255, 255, 0.05); }
+
+    .btn-stop { color: #ff4b4b; border-color: rgba(255, 75, 75, 0.2); }
 
     #toast {
       position: fixed;
-      bottom: 30px;
-      background: #00f2ff;
-      color: #000;
-      padding: 10px 25px;
+      bottom: 25px;
+      background: #7000ff;
+      color: white;
+      padding: 12px 25px;
       border-radius: 50px;
-      font-weight: 600;
+      font-size: 14px;
       display: none;
       z-index: 100;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
   </style>
 </head>
 <body>
 
-  <div id="toast">Reward Added!</div>
+  <div id="toast">Reward Credited!</div>
 
   <div class="app-container">
-    <h2>Dual Ad Engine</h2>
-    <a href="https://t.me/DEVELOPER_GOPAL" class="dev-link">Developed by GOPAL</a>
-
-    <div class="network-badge" id="next-ad">Next: Monetag</div>
+    <h2>Gigapub Rewards</h2>
+    <a href="https://t.me/DEVELOPER_GOPAL" target="_blank" class="dev-label">Developed by GOPAL</a>
 
     <div class="stats-card">
-      <div class="stat-item"><span>Ads</span><b id="ads-count">0</b></div>
-      <div class="stat-item"><span>Points</span><b id="points-count">0</b></div>
+      <div class="stat-box"><span>ADS</span><b id="count">0</b></div>
+      <div class="stat-box"><span>POINTS</span><b id="pts">0</b></div>
     </div>
 
-    <div class="progress-circle">
-      <svg><circle class="progress-bg" cx="65" cy="65" r="60"></circle><circle class="progress-fill" id="p-bar" cx="65" cy="65" r="60"></circle></svg>
-      <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-weight:700;" id="p-text">0%</div>
+    <div class="progress-container">
+      <svg>
+        <circle class="progress-bg" cx="70" cy="70" r="65"></circle>
+        <circle class="progress-fill" id="bar" cx="70" cy="70" r="65"></circle>
+      </svg>
+      <div class="progress-val" id="val">0%</div>
     </div>
 
-    <div class="btn-group">
-      <button class="btn btn-main" onclick="handleAdClick()">▶️ Watch Ad</button>
-      <button class="btn btn-sec" onclick="startAuto()">🔄 Auto Mode</button>
-      <button class="btn btn-sec btn-stop" onclick="stopAuto()">⏹️ Stop Auto</button>
+    <div class="btn-stack">
+      <button class="btn btn-main" onclick="watchGigapubAd()">🎬 Watch Gigapub Ad</button>
+      <button class="btn btn-sec" onclick="startAuto()">⚡ Auto Play</button>
+      <button class="btn btn-sec btn-stop" onclick="stopAuto()">⏹️ Stop</button>
     </div>
   </div>
 
   <script>
-    let adsWatched = 0;
+    let watched = 0;
     let points = 0;
-    let autoInterval = null;
-    let currentNetwork = 'monetag'; // পর্যায়ক্রমে পরিবর্তনের জন্য ট্র্যাকার
+    let auto = null;
 
-    function updateUI() {
-      document.getElementById('ads-count').innerText = adsWatched;
-      document.getElementById('points-count').innerText = points;
-      document.getElementById('next-ad').innerText = "Next: " + (currentNetwork === 'monetag' ? 'Monetag' : 'Gigapub');
+    function update() {
+      document.getElementById('count').innerText = watched;
+      document.getElementById('pts').innerText = points;
       
-      let percent = (adsWatched % 10) * 10;
-      let offset = 408 - (408 * percent) / 100;
-      document.getElementById('p-bar').style.strokeDashoffset = offset;
-      document.getElementById('p-text').innerText = percent + "%";
+      let p = (watched % 10) * 10;
+      let off = 440 - (440 * p) / 100;
+      document.getElementById('bar').style.strokeDashoffset = off;
+      document.getElementById('val').innerText = p + "%";
     }
 
-    async function handleAdClick() {
-      if (currentNetwork === 'monetag') {
-        // Monetag Ad Show
-        if (typeof show_10320222 === 'function') {
-          show_10320222().then(() => {
-            awardUser("Monetag");
-            currentNetwork = 'gigapub'; // পরবর্তী অ্যাড গিগাপাব
-            updateUI();
-          });
-        }
+    function watchGigapubAd() {
+      // Gigapub এর triggerAd ফাংশন কল করা হচ্ছে
+      if (typeof triggerAd === 'function') {
+        triggerAd().then(() => {
+          reward();
+        }).catch(() => {
+          // যদি trigger কাজ না করে তবে সরাসরি রিওয়ার্ড (বিকল্প হিসেবে)
+          reward();
+        });
       } else {
-        // Gigapub Ad Show
-        if (typeof triggerAd === 'function') { 
-          // গিগাপাব এর ট্রিগার ফাংশন (সাধারণত triggerAd বা অটো লোড হয়)
-          triggerAd().then(() => {
-            awardUser("Gigapub");
-            currentNetwork = 'monetag'; // পরবর্তী অ্যাড মনিট্যাগ
-            updateUI();
-          }).catch(() => {
-            // যদি triggerAd কাজ না করে তবে সরাসরি ফাংশন কল
-            awardUser("Gigapub");
-            currentNetwork = 'monetag';
-            updateUI();
-          });
-        } else {
-          // বিকল্প পদ্ধতি যদি SDK ফাংশন না পায়
-          awardUser("Gigapub");
-          currentNetwork = 'monetag';
-          updateUI();
-        }
+        // যদি সরাসরি স্ক্রিপ্ট রানিং থাকে
+        reward();
       }
     }
 
-    function awardUser(network) {
-      adsWatched++;
-      points += 10;
-      showToast(network + " Ad Success!");
+    function reward() {
+      watched++;
+      points += 15;
+      update();
+      msg("15 Points Received!");
     }
 
     function startAuto() {
-      if(autoInterval) return;
-      showToast("Auto Mode On");
-      autoInterval = setInterval(handleAdClick, 7000); // ৭ সেকেন্ড অন্তর
+      if(auto) return;
+      msg("Auto Mode Enabled");
+      auto = setInterval(watchGigapubAd, 6000); // ৬ সেকেন্ড অন্তর অ্যাড
     }
 
     function stopAuto() {
-      clearInterval(autoInterval);
-      autoInterval = null;
-      showToast("Auto Mode Off");
+      clearInterval(auto);
+      auto = null;
+      msg("Auto Mode Disabled");
     }
 
-    function showToast(msg) {
+    function msg(m) {
       const t = document.getElementById('toast');
-      t.innerText = msg; t.style.display = 'block';
+      t.innerText = m;
+      t.style.display = 'block';
       setTimeout(() => t.style.display = 'none', 2000);
     }
   </script>
