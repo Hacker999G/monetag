@@ -1,235 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gigapub Ad Reward System</title>
-  
-  <script src="https://ad.gigapub.tech/script?id=1096"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Monetag Reward App</title>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@500;700&display=swap');
+<!-- Monetag Script -->
+<script src='//niphaumeenses.net/vignette.min.js' 
+data-zone='10282897' 
+data-sdk='show_10282897'></script>
 
-    body {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: #050a10;
-      font-family: 'Inter', sans-serif;
-      color: #ffffff;
-      overflow: hidden;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    /* Background Glow Effect */
-    body::before {
-      content: "";
-      position: absolute;
-      width: 350px;
-      height: 350px;
-      background: rgba(112, 0, 255, 0.15);
-      filter: blur(100px);
-      border-radius: 50%;
-      top: -50px;
-      right: -50px;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
-    .app-container {
-      background: rgba(15, 23, 42, 0.85);
-      border-radius: 32px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
-      padding: 35px;
-      width: 320px;
-      backdrop-filter: blur(25px);
-      position: relative;
-      z-index: 10;
-      text-align: center;
-    }
+body{
+background:linear-gradient(135deg,#0f0c29,#1b1b3a,#24243e);
+color:#fff;
+display:flex;
+flex-direction:column;
+align-items:center;
+min-height:100vh;
+padding-bottom:90px;
+overflow-x:hidden;
+}
 
-    h2 {
-      margin: 0;
-      font-family: 'Outfit', sans-serif;
-      font-size: 24px;
-      background: linear-gradient(135deg, #7000ff, #00f2ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.5px;
-    }
+/* Neon Header */
+.header{
+width:100%;
+padding:20px;
+text-align:center;
+font-size:22px;
+font-weight:700;
+background:linear-gradient(90deg,#ffd700,#ffae00);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 15px rgba(255,215,0,0.6);
+animation:glow 2s infinite alternate;
+}
 
-    .dev-label {
-      font-size: 12px;
-      color: #64748b;
-      text-decoration: none;
-      display: block;
-      margin-top: 5px;
-      margin-bottom: 25px;
-      transition: 0.3s;
-    }
+@keyframes glow{
+from{text-shadow:0 0 10px rgba(255,215,0,0.4);}
+to{text-shadow:0 0 25px rgba(255,215,0,1);}
+}
 
-    .dev-label:hover { color: #00f2ff; }
+/* Glass Card */
+.card{
+width:90%;
+max-width:420px;
+margin-top:25px;
+padding:25px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.1);
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+}
 
-    .stats-card {
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 20px;
-      padding: 15px;
-      margin-bottom: 25px;
-      display: flex;
-      justify-content: space-around;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
+/* Balance Section */
+.balance-box{
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
+font-size:15px;
+}
 
-    .stat-box span { font-size: 11px; color: #94a3b8; text-transform: uppercase; display: block; }
-    .stat-box b { font-size: 20px; color: #f8fafc; }
+/* Reward Button */
+.reward-btn{
+width:100%;
+padding:15px;
+border:none;
+border-radius:14px;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+background:linear-gradient(45deg,#ffd700,#ff9900);
+color:#111;
+box-shadow:0 5px 20px rgba(255,215,0,0.4);
+transition:.3s;
+animation:pulse 2s infinite;
+}
 
-    /* Progress Circle */
-    .progress-container {
-      position: relative;
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 30px;
-    }
+.reward-btn:hover{
+transform:scale(1.05);
+box-shadow:0 8px 25px rgba(255,215,0,0.8);
+}
 
-    .progress-container svg { transform: rotate(-90deg); width: 140px; height: 140px; }
-    .progress-container circle { fill: none; stroke-width: 10; stroke-linecap: round; }
-    .progress-bg { stroke: rgba(255, 255, 255, 0.05); }
-    .progress-fill {
-      stroke: #7000ff;
-      stroke-dasharray: 440;
-      stroke-dashoffset: 440;
-      transition: stroke-dashoffset 0.8s ease;
-      filter: drop-shadow(0 0 8px #7000ff);
-    }
+@keyframes pulse{
+0%{box-shadow:0 0 10px rgba(255,215,0,0.4);}
+50%{box-shadow:0 0 25px rgba(255,215,0,0.9);}
+100%{box-shadow:0 0 10px rgba(255,215,0,0.4);}
+}
 
-    .progress-val {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 26px;
-      font-weight: 700;
-      font-family: 'Outfit', sans-serif;
-    }
+/* Toggle Button */
+.toggle-btn{
+margin-top:15px;
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-weight:600;
+background:linear-gradient(45deg,#00ff88,#00cc66);
+color:#111;
+transition:.3s;
+}
 
-    /* Buttons */
-    .btn-stack { display: flex; flex-direction: column; gap: 12px; }
-    .btn {
-      padding: 15px;
-      border-radius: 16px;
-      border: none;
-      font-weight: 600;
-      font-size: 15px;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
+.toggle-btn.off{
+background:linear-gradient(45deg,#ff4d4d,#cc0000);
+color:#fff;
+}
 
-    .btn-main { background: #7000ff; color: white; box-shadow: 0 10px 20px rgba(112, 0, 255, 0.3); }
-    .btn-main:hover { transform: scale(1.05); background: #8224ff; }
+/* Bottom Nav */
+.bottom-nav{
+position:fixed;
+bottom:0;
+width:100%;
+display:flex;
+justify-content:space-around;
+background:rgba(0,0,0,0.9);
+padding:15px 0;
+border-top:1px solid rgba(255,255,255,0.1);
+}
 
-    .btn-sec { background: transparent; border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; }
-    .btn-sec:hover { background: rgba(255, 255, 255, 0.05); }
+.bottom-nav a{
+color:#ffd700;
+text-decoration:none;
+font-size:14px;
+text-align:center;
+}
 
-    .btn-stop { color: #ff4b4b; border-color: rgba(255, 75, 75, 0.2); }
-
-    #toast {
-      position: fixed;
-      bottom: 25px;
-      background: #7000ff;
-      color: white;
-      padding: 12px 25px;
-      border-radius: 50px;
-      font-size: 14px;
-      display: none;
-      z-index: 100;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
-  </style>
+.bottom-nav a:hover{
+color:#fff;
+}
+</style>
 </head>
+
 <body>
 
-  <div id="toast">Reward Credited!</div>
+<div class="header">💎 PREMIUM REWARD ZONE</div>
 
-  <div class="app-container">
-    <h2>Gigapub Rewards</h2>
-    <a href="https://t.me/DEVELOPER_GOPAL" target="_blank" class="dev-label">Developed by GOPAL</a>
+<div class="card">
+<div class="balance-box">
+<div>Points: <b id="points">0</b></div>
+<div>Balance: $<b id="balance">0.00</b></div>
+</div>
 
-    <div class="stats-card">
-      <div class="stat-box"><span>ADS</span><b id="count">0</b></div>
-      <div class="stat-box"><span>POINTS</span><b id="pts">0</b></div>
-    </div>
+<button class="reward-btn" onclick="showRewardedAd()">🎁 Watch & Earn</button>
+<button class="toggle-btn off" id="autoBtn" onclick="toggleAutoAds()">⏳ Auto Ads: OFF</button>
+</div>
 
-    <div class="progress-container">
-      <svg>
-        <circle class="progress-bg" cx="70" cy="70" r="65"></circle>
-        <circle class="progress-fill" id="bar" cx="70" cy="70" r="65"></circle>
-      </svg>
-      <div class="progress-val" id="val">0%</div>
-    </div>
+<div class="bottom-nav">
+<a href="#">Home</a>
+<a href="javascript:void(0)" onclick="shareChannel()">Share</a>
+<a href="https://t.me/Ai_Income_Leb" target="_blank">Developer</a>
+</div>
 
-    <div class="btn-stack">
-      <button class="btn btn-main" onclick="watchGigapubAd()">🎬 Watch Gigapub Ad</button>
-      <button class="btn btn-sec" onclick="startAuto()">⚡ Auto Play</button>
-      <button class="btn btn-sec btn-stop" onclick="stopAuto()">⏹️ Stop</button>
-    </div>
-  </div>
+<script>
+let points = parseInt(localStorage.getItem('points') || 0);
+let balance = parseFloat(localStorage.getItem('balance') || 0);
+let autoAds = false;
+let interval;
 
-  <script>
-    let watched = 0;
-    let points = 0;
-    let auto = null;
+document.getElementById('points').textContent = points;
+document.getElementById('balance').textContent = balance.toFixed(2);
 
-    function update() {
-      document.getElementById('count').innerText = watched;
-      document.getElementById('pts').innerText = points;
-      
-      let p = (watched % 10) * 10;
-      let off = 440 - (440 * p) / 100;
-      document.getElementById('bar').style.strokeDashoffset = off;
-      document.getElementById('val').innerText = p + "%";
-    }
+/* ===== Reward Function ===== */
+function rewardUser(){
+points += 10;
+balance += 0.01;
+localStorage.setItem('points', points);
+localStorage.setItem('balance', balance);
+document.getElementById('points').textContent = points;
+document.getElementById('balance').textContent = balance.toFixed(2);
+alert("✅ 10 Points + $0.01 Added!");
+}
 
-    function watchGigapubAd() {
-      // Gigapub এর triggerAd ফাংশন কল করা হচ্ছে
-      if (typeof triggerAd === 'function') {
-        triggerAd().then(() => {
-          reward();
-        }).catch(() => {
-          // যদি trigger কাজ না করে তবে সরাসরি রিওয়ার্ড (বিকল্প হিসেবে)
-          reward();
-        });
-      } else {
-        // যদি সরাসরি স্ক্রিপ্ট রানিং থাকে
-        reward();
-      }
-    }
+/* ===== Monetag Rewarded Interstitial ===== */
+function showRewardedAd(){
+if(typeof show_10282897 === "function"){
+show_10282897().then(()=>{
+rewardUser();
+}).catch(()=>{
+// fallback popup rewarded
+show_10282897('pop').then(()=>{
+rewardUser();
+}).catch(()=>{
+alert("⚠️ Ad not available. Try again.");
+});
+});
+}else{
+alert("⚠️ Run on Live Server!");
+}
+}
 
-    function reward() {
-      watched++;
-      points += 15;
-      update();
-      msg("15 Points Received!");
-    }
+/* ===== Auto Ads ===== */
+function toggleAutoAds(){
+autoAds = !autoAds;
+const btn = document.getElementById("autoBtn");
+if(autoAds){
+btn.classList.remove("off");
+btn.innerText="⏳ Auto Ads: ON";
+interval=setInterval(showRewardedAd,20000);
+}else{
+btn.classList.add("off");
+btn.innerText="⏳ Auto Ads: OFF";
+clearInterval(interval);
+}
+}
 
-    function startAuto() {
-      if(auto) return;
-      msg("Auto Mode Enabled");
-      auto = setInterval(watchGigapubAd, 6000); // ৬ সেকেন্ড অন্তর অ্যাড
-    }
-
-    function stopAuto() {
-      clearInterval(auto);
-      auto = null;
-      msg("Auto Mode Disabled");
-    }
-
-    function msg(m) {
-      const t = document.getElementById('toast');
-      t.innerText = m;
-      t.style.display = 'block';
-      setTimeout(() => t.style.display = 'none', 2000);
-    }
-  </script>
+/* ===== Share ===== */
+function shareChannel(){
+window.open("https://t.me/share/url?url=https://t.me/DEVELOPER_GOPAL","_blank");
+}
+</script>
 
 </body>
 </html>
